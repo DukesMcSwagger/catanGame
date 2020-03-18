@@ -49,9 +49,9 @@ function generateBoard()
     var token = " ";
 
     // FOR DEBUGGING
-    console.log("screen width: " + screen.width + "\nscreen height: " + screen.height)
-    console.log("board width: " + boardSettings.style.width)
-    console.log("board offset left: " + boardSettings.offsetLeft + "\nboard offset top: " + boardSettings.offsetTop);
+    //console.log("screen width: " + screen.width + "\nscreen height: " + screen.height)
+    //console.log("board width: " + boardSettings.style.width)
+    //console.log("board offset left: " + boardSettings.offsetLeft + "\nboard offset top: " + boardSettings.offsetTop);
 
     boardSettings.style.left = '50%';
     boardSettings.style.top = '40%';
@@ -109,7 +109,7 @@ function generateBoard()
             }
         
         }
-
+        //generate tokens
         while (tokenGenerated == false)
         {
             tokenSelect = Math.floor(Math.random() * 10);
@@ -220,4 +220,56 @@ function generateBoard()
     document.getElementById("board").innerHTML = board;
 }
 
+function generateSettlementNodes()
+{
+    //variables for settlement node generation
+    var settlementNodeGeneration = "";
+    var settlementNodeTop = 25;
+    var settlementNodeLeft = -370;
+    var settlementLeftIncrement = 68.5;
+    var skipTileIncrement = 92;
+
+    for (let i = 0; i < 54; i++)
+    {
+        settlementNodeGeneration += "<img src='images/playerPieces/red square.png'"
+        + "id='settlementNode" + i + "' style='position:absolute; width: 25; height auto; top: " 
+        + settlementNodeTop + "; left: " + settlementNodeLeft + ";'>";
+
+        settlementNodeTop += 72;
+
+        if (i == 1 || i == 47)
+        {
+            settlementNodeTop = -90;
+            settlementNodeLeft += settlementLeftIncrement;
+        }
+
+        if (i == 5 || i == 17 || i == 29 || i == 41)
+        {
+            settlementNodeTop = -210;
+            settlementNodeLeft += settlementLeftIncrement;
+        }
+
+        if (i == 3 || i == 7 || i == 9 || i == 12 || i == 14 || i == 16 || i == 19 || i == 21 || i == 24 || i == 26 || i == 28
+            || i == 31 || i == 33 || i == 36 || i == 38 || i == 40 || i == 43 || i == 45 || i == 49)
+        {
+            settlementNodeTop += skipTileIncrement;
+        }
+
+        if (i == 11 || i == 23 || i == 35)
+        {
+            settlementNodeTop = -250;
+            settlementNodeLeft += settlementLeftIncrement;
+        }
+
+        if (i == 51)
+        {
+            settlementNodeTop = 25;
+            settlementNodeLeft += settlementLeftIncrement;
+        }
+    }
+
+    document.getElementById("board").innerHTML += settlementNodeGeneration;
+}
+
 generateBoard();
+generateSettlementNodes();
