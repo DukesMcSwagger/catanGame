@@ -3,6 +3,7 @@
 
 //feel free to add yourself to the authors and then erase this message.
 
+//Credit to Breanna for creating the desert tile
 //Credit to Alex Hauser for creating the tokens
 
 function generateBoard()
@@ -257,7 +258,7 @@ function generateSettlementNodes()
 
         if (i == 11 || i == 23 || i == 35)
         {
-            settlementNodeTop = -250;
+            settlementNodeTop = -255;
             settlementNodeLeft += settlementLeftIncrement;
         }
 
@@ -271,5 +272,124 @@ function generateSettlementNodes()
     document.getElementById("board").innerHTML += settlementNodeGeneration;
 }
 
+function generateRoadNodes()
+{
+    var roadNodeGeneration = "";
+    var roadNodeTop = -165;
+    var roadNodeLeft = -242.5;
+    var roadLeftIncrement = 140;
+    var rotation = 90;
+
+    for (let i = 0; i < 72; i++)
+    {
+        roadNodeGeneration += "<img src='images/playerPieces/blue line.png'"
+        + "id='roadNode" + i + "' style='position:absolute; width: 35; height auto; top: " 
+        + roadNodeTop + "; left: " + roadNodeLeft + "; transform: rotate( " + rotation +  "deg);'>";
+
+        roadNodeLeft += roadLeftIncrement;
+
+        if (i == 3)
+        {
+            roadNodeTop = -45;
+            roadNodeLeft = -312;
+        }
+
+        if (i == 8)
+        {
+            roadNodeTop = 70;
+            roadNodeLeft = -382;
+        }
+
+        if (i == 14)
+        {
+            roadNodeTop = 190;
+            roadNodeLeft = -312;
+        }
+
+        if (i == 19)
+        {
+            roadNodeTop = 310;
+            roadNodeLeft = -242.5;
+        }
+
+        if (i == 23)
+        {
+            rotation = 30;
+            roadNodeTop = -225;
+            roadNodeLeft = -133;
+        }
+
+        if (i == 26)
+        {
+            roadNodeTop = -108;
+            roadNodeLeft = -207;
+        }
+
+        if (i == 30)
+        {
+            roadNodeTop = 13;
+            roadNodeLeft = -275;
+        }
+
+        if (i == 35) 
+        {
+            roadNodeTop = 133;
+            roadNodeLeft = -347;
+        }
+
+        if (i == 40)
+        {
+            roadNodeTop = 253;
+            roadNodeLeft = -275;
+        }
+
+        if (i == 44)
+        {
+            roadNodeTop = 373;
+            roadNodeLeft = -207;
+        }
+
+        if (i == 47)
+        {
+            rotation = -30;
+            roadNodeTop = -225;
+            roadNodeLeft = -213;
+        }
+
+        if (i == 50)
+        {
+            roadNodeTop = -106.5;
+            roadNodeLeft = -280;
+        }
+
+        if (i == 54)
+        {
+            roadNodeTop = 13;
+            roadNodeLeft = -350;
+        }
+
+        if (i == 59)
+        {
+            roadNodeTop = 131;
+            roadNodeLeft = -275;
+        }
+
+        if (i == 64)
+        {
+            roadNodeTop = 253;
+            roadNodeLeft = -208;
+        }
+
+        if (i == 68)
+        {
+            roadNodeTop = 372;
+            roadNodeLeft = -135;
+        }
+    }
+
+    document.getElementById("board").innerHTML += roadNodeGeneration;
+}
+
 generateBoard();
 generateSettlementNodes();
+generateRoadNodes();
