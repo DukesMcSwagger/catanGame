@@ -390,6 +390,13 @@ function generateRoadNodes()
     document.getElementById("board").innerHTML += roadNodeGeneration;
 }
 
+
+
+
+
+    
+
 generateBoard();
 generateSettlementNodes();
 generateRoadNodes();
+
