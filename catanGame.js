@@ -10,7 +10,7 @@ function generateBoard()
 {
     //variables for board generation
     var board = " ";
-    var tileLeft = -360;
+    var tileLeft = -305;
     var counter = 0;
     var tileTopInitial = 0;
     var tileLeftIncrement = 70; //amount of pixels to the next tile left of the following column
@@ -185,7 +185,7 @@ function generateBoard()
         //generate html code for tiles
         board += "<img src='images/boardTiles/" + image + ".png' " 
         + "style='position:absolute; width: 130; height: auto;"
-        + "top: " + tileTop + "; left:  " + tileLeft + "'>";
+        + "top: " + tileTop + "; left:  " + (tileLeft) + "'>";
 
         if (desertGenerated == false)
         {
@@ -218,7 +218,7 @@ function generateBoard()
         counter++;
     }
 
-    document.getElementById("board").innerHTML = board;
+    document.getElementById("board").innerHTML += board;
 }
 
 function generateSettlementNodes()
@@ -226,7 +226,7 @@ function generateSettlementNodes()
     //variables for settlement node generation
     var settlementNodeGeneration = "";
     var settlementNodeTop = 25;
-    var settlementNodeLeft = -370;
+    var settlementNodeLeft = -370 + 55;
     var settlementLeftIncrement = 68.5;
     var skipTileIncrement = 92;
 
@@ -276,9 +276,10 @@ function generateRoadNodes()
 {
     var roadNodeGeneration = "";
     var roadNodeTop = -165;
-    var roadNodeLeft = -242.5;
+    var roadNodeLeft = -242.5 + 55;
     var roadLeftIncrement = 140;
     var rotation = 90;
+    var leftOffset = 55;
 
     for (let i = 0; i < 72; i++)
     {
@@ -291,99 +292,99 @@ function generateRoadNodes()
         if (i == 3)
         {
             roadNodeTop = -45;
-            roadNodeLeft = -312;
+            roadNodeLeft = -312 + leftOffset;
         }
 
         if (i == 8)
         {
             roadNodeTop = 70;
-            roadNodeLeft = -382;
+            roadNodeLeft = -382 + leftOffset;
         }
 
         if (i == 14)
         {
             roadNodeTop = 190;
-            roadNodeLeft = -312;
+            roadNodeLeft = -312 + leftOffset;
         }
 
         if (i == 19)
         {
             roadNodeTop = 310;
-            roadNodeLeft = -242.5;
+            roadNodeLeft = -242.5 + leftOffset;
         }
 
         if (i == 23)
         {
             rotation = 30;
             roadNodeTop = -225;
-            roadNodeLeft = -133;
+            roadNodeLeft = -133 + leftOffset;
         }
 
         if (i == 26)
         {
             roadNodeTop = -108;
-            roadNodeLeft = -207;
+            roadNodeLeft = -207 + leftOffset;
         }
 
         if (i == 30)
         {
             roadNodeTop = 13;
-            roadNodeLeft = -275;
+            roadNodeLeft = -275 + leftOffset;
         }
 
         if (i == 35) 
         {
             roadNodeTop = 133;
-            roadNodeLeft = -347;
+            roadNodeLeft = -347 + leftOffset;
         }
 
         if (i == 40)
         {
             roadNodeTop = 253;
-            roadNodeLeft = -275;
+            roadNodeLeft = -275 + leftOffset;
         }
 
         if (i == 44)
         {
             roadNodeTop = 373;
-            roadNodeLeft = -207;
+            roadNodeLeft = -207 + leftOffset;
         }
 
         if (i == 47)
         {
             rotation = -30;
             roadNodeTop = -225;
-            roadNodeLeft = -213;
+            roadNodeLeft = -213 + leftOffset;
         }
 
         if (i == 50)
         {
             roadNodeTop = -106.5;
-            roadNodeLeft = -280;
+            roadNodeLeft = -280 + leftOffset;
         }
 
         if (i == 54)
         {
             roadNodeTop = 13;
-            roadNodeLeft = -350;
+            roadNodeLeft = -350 + leftOffset;
         }
 
         if (i == 59)
         {
             roadNodeTop = 131;
-            roadNodeLeft = -275;
+            roadNodeLeft = -275 + leftOffset;
         }
 
         if (i == 64)
         {
             roadNodeTop = 253;
-            roadNodeLeft = -208;
+            roadNodeLeft = -208 + leftOffset;
         }
 
         if (i == 68)
         {
             roadNodeTop = 372;
-            roadNodeLeft = -135;
+            roadNodeLeft = -135 + leftOffset;
         }
     }
 
