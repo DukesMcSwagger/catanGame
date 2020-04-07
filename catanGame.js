@@ -10,7 +10,7 @@ function generateBoard()
 {
     //variables for board generation
     var board = " ";
-    var tileLeft = -305;
+    var tileLeft = -360;
     var counter = 0;
     var tileTopInitial = 0;
     var tileLeftIncrement = 70; //amount of pixels to the next tile left of the following column
@@ -226,7 +226,7 @@ function generateSettlementNodes()
     //variables for settlement node generation
     var settlementNodeGeneration = "";
     var settlementNodeTop = 25;
-    var settlementNodeLeft = -370 + 55;
+    var settlementNodeLeft = -370;
     var settlementLeftIncrement = 68.5;
     var skipTileIncrement = 92;
 
@@ -274,12 +274,12 @@ function generateSettlementNodes()
 
 function generateRoadNodes()
 {
+    var leftOffset = 0;
     var roadNodeGeneration = "";
     var roadNodeTop = -165;
-    var roadNodeLeft = -242.5 + 55;
+    var roadNodeLeft = -242.5 + leftOffset;
     var roadLeftIncrement = 140;
     var rotation = 90;
-    var leftOffset = 55;
 
     for (let i = 0; i < 72; i++)
     {
