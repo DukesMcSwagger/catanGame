@@ -234,7 +234,7 @@ function generateSettlementNodes()
     {
         settlementNodeGeneration += "<img src='images/playerPieces/red square.png'"
         + "id='settlementNode" + i + "' style='position:absolute; width: 25; height auto; top: " 
-        + settlementNodeTop + "; left: " + settlementNodeLeft + ";'>";
+        + settlementNodeTop + "; left: " + settlementNodeLeft + " ;' hidden>";
 
         settlementNodeTop += 72;
 
@@ -399,4 +399,5 @@ function generateRoadNodes()
 generateBoard();
 generateSettlementNodes();
 generateRoadNodes();
+
 
