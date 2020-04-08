@@ -6,6 +6,10 @@
 //Credit to Breanna for creating the desert tile
 //Credit to Alex Hauser for creating the tokens
 
+//global variables
+var tiles = []
+var settlementNodes = []
+
 function generateBoard()
 {
     //variables for board generation
@@ -183,13 +187,15 @@ function generateBoard()
         }
 
         //generate html code for tiles
-        board += "<img src='images/boardTiles/" + image + ".png' " 
+        board += "<img src='images/boardTiles/" + image + ".png' "
+        + "id='tile" + i + "'" 
         + "style='position:absolute; width: 130; height: auto;"
         + "top: " + tileTop + "; left:  " + (tileLeft) + "'>";
 
         if (desertGenerated == false)
         {
             board += "<img src='images/numberTokens/" + token + ".png' "
+            + "id='token" + i + "'" 
             + "style='position:absolute; width: 25; height: auto;"
             + "top: " + (tileTop + 108) + "; left: " + (tileLeft + 53) + "'>";
         }
@@ -391,6 +397,168 @@ function generateRoadNodes()
     document.getElementById("board").innerHTML += roadNodeGeneration;
 }
 
+function tileTokenAssignment() //assign the token numbers to the tiles they are on
+{
+    for (let i = 0; i < 19; i++)
+    {
+        tiles[i] = document.getElementById("tile" + i);
+    }
+
+    for (let i = 0; i < 19; i++)
+    {
+        tiles[i].tokenNumber = findToken(i);
+    }
+
+    function findToken(_token) //figure out what number is on the token
+    {
+        if (document.getElementById("token" + _token) != null)
+        {
+            if (document.getElementById("token" + _token).src != null)
+            {
+                let searchStr = document.getElementById("token" + _token).src;
+                //console.log(searchStr); //used for debugging
+                for (let i = 18; i > 0; i--)
+                {
+                    if (searchStr.search(i + "T") >= 0)
+                    {
+                        //console.log("Token number set: " + i); //used for debugging
+                        return i
+                    }
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
+}
+
+function tileResourceAssignment()
+{
+    for (let i = 0; i < 19; i++)
+    {
+        if (tiles[i].src.search("oreT") >= 0)
+        {
+            tiles[i].resource = "ore";
+        }
+        else if (tiles[i].src.search("sheepT") >= 0)
+        {
+            tiles[i].resource = "sheep";
+        }
+        else if (tiles[i].src.search("brickT") >= 0)
+        {
+            tiles[i].resource = "brick";
+        }
+        else if (tiles[i].src.search("forestT") >= 0)
+        {
+            tiles[i].resource = "wood";
+        }
+        else if (tiles[i].src.search("wheatT") >= 0)
+        {
+            tiles[i].resource = "wheat";
+        }
+        else if (tiles[i].src.search("desertT") >= 0)
+        {
+            tiles[i].resource = "desert";
+        }
+        else
+        {
+            console.log("Error: Could not find tile resource for tile " + i);
+        }
+    }
+}
+
+function settlementNodeTileAssignment()
+{
+    for (let i = 0; i < 54; i++)
+    {
+        settlementNodes[i] = document.getElementById("settlementNode" + i);
+    }
+
+    settlementNodes[0].tiles = [0]
+    settlementNodes[1].tiles = [0]
+    settlementNodes[2].tiles = [1]
+    settlementNodes[3].tiles = [0, 1]
+    settlementNodes[4].tiles = [0, 2]
+    settlementNodes[5].tiles = [2]
+    settlementNodes[6].tiles = [3]
+    settlementNodes[7].tiles = [1, 3]
+    settlementNodes[8].tiles = [0, 1, 4]
+    settlementNodes[9].tiles = [0, 2, 4]
+    settlementNodes[10].tiles = [2, 5]
+    settlementNodes[11].tiles = [5]
+    settlementNodes[12].tiles = [3]
+    settlementNodes[13].tiles = [1, 3, 6]
+    settlementNodes[14].tiles = [1, 4, 6]
+    settlementNodes[15].tiles = [2, 4, 7]
+    settlementNodes[16].tiles = [2, 5, 7]
+    settlementNodes[17].tiles = [5]
+    settlementNodes[18].tiles = [3, 8]
+    settlementNodes[19].tiles = [3, 6, 8]
+    settlementNodes[20].tiles = [4, 6, 9]
+    settlementNodes[21].tiles = [4, 7, 9]
+    settlementNodes[22].tiles = [5, 7, 10]
+    settlementNodes[23].tiles = [5, 10]
+    settlementNodes[24].tiles = [8]
+    settlementNodes[25].tiles = [6, 8, 11]
+    settlementNodes[26].tiles = [6, 9, 11]
+    settlementNodes[27].tiles = [7, 9, 12]
+    settlementNodes[28].tiles = [7, 10, 12]
+    settlementNodes[29].tiles = [10]
+    settlementNodes[30].tiles = [8, 13]
+    settlementNodes[31].tiles = [8, 11, 13]
+    settlementNodes[32].tiles = [9, 11, 14]
+    settlementNodes[33].tiles = [9, 12, 14]
+    settlementNodes[34].tiles = [10, 12, 15]
+    settlementNodes[35].tiles = [10, 15]
+    settlementNodes[36].tiles = [13]
+    settlementNodes[37].tiles = [11, 13, 16]
+    settlementNodes[38].tiles = [11, 14, 16]
+    settlementNodes[39].tiles = [12, 14, 17]
+    settlementNodes[40].tiles = [12, 15, 17]
+    settlementNodes[41].tiles = [15]
+    settlementNodes[42].tiles = [13]
+    settlementNodes[43].tiles = [13, 16]
+    settlementNodes[44].tiles = [14, 16, 18]
+    settlementNodes[45].tiles = [14, 17, 18]
+    settlementNodes[46].tiles = [15, 17]
+    settlementNodes[47].tiles = [15]
+    settlementNodes[48].tiles = [16]
+    settlementNodes[49].tiles = [16, 18]
+    settlementNodes[50].tiles = [17, 18]
+    settlementNodes[51].tiles = [17]
+    settlementNodes[52].tiles = [18]
+    settlementNodes[53].tiles = [18]
+}
+
+function tileNodeSettlementAssignment()
+{
+    tiles[0].settlementNodes = [0, 1, 3, 4, 8 , 9];
+    tiles[1].settlementNodes = [2, 3, 7, 8, 13, 14];
+    tiles[2].settlementNodes = [4, 5, 9, 10, 15, 16];
+    tiles[3].settlementNodes = [6, 7, 12, 13, 18, 19];
+    tiles[4].settlementNodes = [8, 9, 14, 15, 20, 21];
+    tiles[5].settlementNodes = [10, 11, 16, 17, 22, 23];
+    tiles[6].settlementNodes = [13, 14, 19, 20, 25, 26];
+    tiles[7].settlementNodes = [15, 16, 21, 22, 27, 28];
+    tiles[8].settlementNodes = [18, 19, 24, 25, 30, 31];
+    tiles[9].settlementNodes = [20, 21, 26, 27, 32, 33];
+    tiles[10].settlementNodes = [22, 23, 28, 29, 34, 35];
+    tiles[11].settlementNodes = [25, 26, 31, 32, 37, 38];
+    tiles[12].settlementNodes = [27, 28, 33, 34, 39, 40];
+    tiles[13].settlementNodes = [30, 31, 36, 37, 42, 43];
+    tiles[14].settlementNodes = [32, 33, 38, 39, 44, 45];
+    tiles[15].settlementNodes = [34, 35, 40, 41, 46, 47];
+    tiles[16].settlementNodes = [37, 38, 43, 44, 48, 49];
+    tiles[17].settlementNodes = [39, 40, 45, 46, 50, 51];
+    tiles[18].settlementNodes = [44, 45, 49, 50, 52, 53];
+}
+
 generateBoard();
 generateSettlementNodes();
 generateRoadNodes();
+tileTokenAssignment();
+tileResourceAssignment();
+settlementNodeTileAssignment();
+tileNodeSettlementAssignment();
