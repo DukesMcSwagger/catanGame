@@ -238,9 +238,9 @@ function generateSettlementNodes()
 
     for (let i = 0; i < 54; i++)
     {
-        settlementNodeGeneration += "<img src='images/playerPieces/red square.png'"
+        settlementNodeGeneration += "<img src='images/playerPieces/invisible box.png'"
         + "id='settlementNode" + i + "' style='position:absolute; width: 25; height auto; top: " 
-        + settlementNodeTop + "; left: " + settlementNodeLeft + ";'>";
+        + settlementNodeTop + "; left: " + settlementNodeLeft + " ;'>";
 
         settlementNodeTop += 72;
 
@@ -289,7 +289,7 @@ function generateRoadNodes()
 
     for (let i = 0; i < 72; i++)
     {
-        roadNodeGeneration += "<img src='images/playerPieces/blue line.png'"
+        roadNodeGeneration += "<img src='images/playerPieces/invisible rectangle.png'"
         + "id='roadNode" + i + "' style='position:absolute; width: 35; height auto; top: " 
         + roadNodeTop + "; left: " + roadNodeLeft + "; transform: rotate( " + rotation +  "deg);'>";
 
