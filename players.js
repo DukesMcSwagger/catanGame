@@ -197,7 +197,12 @@ function player4(){
     ctx.fillText("Hand Total: "+totalHand4, 1723, 870); 
 }
 
-player1();
-player2();
-player3();
-player4();
+//drawPlayer UI
+function updatePlayers()
+{
+    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight)
+    player1();
+    player2();
+    player3();
+    player4();
+}
