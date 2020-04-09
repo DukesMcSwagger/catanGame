@@ -206,3 +206,5 @@ function updatePlayers()
     player3();
     player4();
 }
+
+updatePlayers()

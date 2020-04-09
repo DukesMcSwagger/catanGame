@@ -10,6 +10,13 @@
 var tiles = []
 var settlementNodes = []
 
+//used for the tiles[x].settlementNodes[x] array
+function settlementNode(_number, _owner)
+{
+    this.number = _number;
+    this.owner = _owner;
+}
+
 function generateBoard()
 {
     //variables for board generation
@@ -468,12 +475,12 @@ function tileResourceAssignment()
         }
     }
 }
-
 function settlementNodeTileAssignment()
 {
     for (let i = 0; i < 54; i++)
     {
         settlementNodes[i] = document.getElementById("settlementNode" + i);
+        settlementNodes[i].owner = 0;
     }
 
     settlementNodes[0].tiles = [0]
@@ -534,25 +541,32 @@ function settlementNodeTileAssignment()
 
 function tileNodeSettlementAssignment()
 {
-    tiles[0].settlementNodes = [0, 1, 3, 4, 8 , 9];
-    tiles[1].settlementNodes = [2, 3, 7, 8, 13, 14];
-    tiles[2].settlementNodes = [4, 5, 9, 10, 15, 16];
-    tiles[3].settlementNodes = [6, 7, 12, 13, 18, 19];
-    tiles[4].settlementNodes = [8, 9, 14, 15, 20, 21];
-    tiles[5].settlementNodes = [10, 11, 16, 17, 22, 23];
-    tiles[6].settlementNodes = [13, 14, 19, 20, 25, 26];
-    tiles[7].settlementNodes = [15, 16, 21, 22, 27, 28];
-    tiles[8].settlementNodes = [18, 19, 24, 25, 30, 31];
-    tiles[9].settlementNodes = [20, 21, 26, 27, 32, 33];
-    tiles[10].settlementNodes = [22, 23, 28, 29, 34, 35];
-    tiles[11].settlementNodes = [25, 26, 31, 32, 37, 38];
-    tiles[12].settlementNodes = [27, 28, 33, 34, 39, 40];
-    tiles[13].settlementNodes = [30, 31, 36, 37, 42, 43];
-    tiles[14].settlementNodes = [32, 33, 38, 39, 44, 45];
-    tiles[15].settlementNodes = [34, 35, 40, 41, 46, 47];
-    tiles[16].settlementNodes = [37, 38, 43, 44, 48, 49];
-    tiles[17].settlementNodes = [39, 40, 45, 46, 50, 51];
-    tiles[18].settlementNodes = [44, 45, 49, 50, 52, 53];
+    tiles[0].settlementNodes = [new settlementNode(0,0), new settlementNode(1,0), new settlementNode(3,0), new settlementNode(4,0), new settlementNode(8,0), new settlementNode(9,0)];
+    tiles[1].settlementNodes = [new settlementNode(2,0), new settlementNode(3,0), new settlementNode(7,0), new settlementNode(8,0),new settlementNode(13,0), new settlementNode(14,0)];
+    tiles[2].settlementNodes = [new settlementNode(4,0), new settlementNode(5,0), new settlementNode(9,0), new settlementNode(10,0),new settlementNode(15,0), new settlementNode(16,0)];
+    tiles[3].settlementNodes = [new settlementNode(6,0), new settlementNode(7,0), new settlementNode(12,0), new settlementNode(13,0), new settlementNode(18,0), new settlementNode(19,0)];
+    tiles[4].settlementNodes = [new settlementNode(8,0), new settlementNode(9,0), new settlementNode(14,0), new settlementNode(15,0), new settlementNode(20,0), new settlementNode(21,0)];
+    tiles[5].settlementNodes = [new settlementNode(10,0), new settlementNode(11,0), new settlementNode(16,0), new settlementNode(17,0), new settlementNode(22,0), new settlementNode(23,0)];
+    tiles[6].settlementNodes = [new settlementNode(13,0), new settlementNode(14,0), new settlementNode(19,0), new settlementNode(20,0), new settlementNode(25,0), new settlementNode(26,0)];
+    tiles[7].settlementNodes = [new settlementNode(15,0), new settlementNode(16,0), new settlementNode(21,0), new settlementNode(22,0), new settlementNode(27,0), new settlementNode(28,0)];
+    tiles[8].settlementNodes = [new settlementNode(18,0), new settlementNode(19,0), new settlementNode(24,0), new settlementNode(25,0), new settlementNode(30,0), new settlementNode(31,0)];
+    tiles[9].settlementNodes = [new settlementNode(20,0), new settlementNode(21,0), new settlementNode(26,0), new settlementNode(27,0), new settlementNode(32,0), new settlementNode(33,0)];
+    tiles[10].settlementNodes = [new settlementNode(22,0), new settlementNode(23,0), new settlementNode(28,0), new settlementNode(29,0), new settlementNode(34,0), new settlementNode(35, 0)];
+    tiles[11].settlementNodes = [new settlementNode(25,0), new settlementNode(26,0), new settlementNode(31,0), new settlementNode(32,0), new settlementNode(37,0), new settlementNode(38, 0)];
+    tiles[12].settlementNodes = [new settlementNode(27,0), new settlementNode(28,0), new settlementNode(33,0), new settlementNode(34,0), new settlementNode(39,0), new settlementNode(40, 0)];
+    tiles[13].settlementNodes = [new settlementNode(30,0), new settlementNode(31,0), new settlementNode(36,0), new settlementNode(37,0), new settlementNode(42,0), new settlementNode(43, 0)];
+    tiles[14].settlementNodes = [new settlementNode(32,0), new settlementNode(33,0), new settlementNode(38,0), new settlementNode(39,0), new settlementNode(44,0), new settlementNode(45, 0)];
+    tiles[15].settlementNodes = [new settlementNode(34,0), new settlementNode(35,0), new settlementNode(40,0), new settlementNode(41,0), new settlementNode(46,0), new settlementNode(47, 0)];
+    tiles[16].settlementNodes = [new settlementNode(37,0), new settlementNode(38,0), new settlementNode(43,0), new settlementNode(44,0), new settlementNode(48,0), new settlementNode(49, 0)];
+    tiles[17].settlementNodes = [new settlementNode(39,0), new settlementNode(40,0), new settlementNode(45,0), new settlementNode(46,0), new settlementNode(50,0), new settlementNode(51, 0)];
+    tiles[18].settlementNodes = [new settlementNode(44,0), new settlementNode(45,0), new settlementNode(49,0), new settlementNode(50,0), new settlementNode(52,0), new settlementNode(53, 0)];
+}
+
+function addStaticEventListeners()
+{
+    document.getElementById("endTurn").addEventListener("click", function(){
+        endTurn();
+    });
 }
 
 generateBoard();
@@ -562,3 +576,4 @@ tileTokenAssignment();
 tileResourceAssignment();
 settlementNodeTileAssignment();
 tileNodeSettlementAssignment();
+addStaticEventListeners();
