@@ -6,6 +6,9 @@
 //best way to find settlement nodes its to parse the tiles array and check those settlement nodes and
 //look at the number and owner fields
 
+//global variables
+var firstTurnCount = 0
+
 function catanPlayer()
 {
     this.player = 1;
@@ -203,7 +206,8 @@ function addTurnEventListeners()
     {
         let square = document.getElementById("settlementNode" + i);
 
-        square.addEventListener("click", function(){
+        square.addEventListener("click", function()
+        {
             this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
             this.owner = activePlayer.player; //set owner in settlement nodes array
             let id = this.id.split("settlementNode").pop(); //get the settlement node number of the node that was clicked
@@ -231,9 +235,55 @@ function addTurnEventListeners()
     }
 }
 
+function firstTurn()
+{
+    let endTurnBtn = document.getElementById("endTurn");
+    let dice = document.getElementById("dicePosition");
+    
+    for (let i = 0; i < 54; i++)
+    {
+        document.getElementById("settlementNode" + i).addEventListener("click", firstTurnLogic)
+    }
+
+    playerTurn(activePlayer.player);
+    endTurnBtn.hidden = true;
+    dice.hidden = true;
+}
+
+function firstTurnLogic()
+{
+    activePlayer.player += 1;
+    if (activePlayer.player >= 5)
+    {
+        activePlayer.player = 1;
+        playerTurn(activePlayer.player);
+    }
+    playerTurn(activePlayer.player);
+    firstTurnCount += 1;
+
+    if (firstTurnCount >= 8)
+    {
+        endFirstTurn();
+    }
+}
+
+function endFirstTurn()
+{
+    let endTurnBtn = document.getElementById("endTurn");
+    let dice = document.getElementById("dicePosition");
+
+    for (let i = 0; i < 54; i++)
+    {
+        document.getElementById("settlementNode" + i).removeEventListener("click", firstTurnLogic);
+    }
+
+    endTurnBtn.hidden = false;
+    dice.hidden = false;
+}
+
 addTurnEventListeners();
 
-playerTurn(activePlayer.player);
+firstTurn();
 
 
 
