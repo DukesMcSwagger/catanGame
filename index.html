@@ -13,11 +13,10 @@
             {
                 position: absolute;
             }
-            canvas 
-            { 
-                background: #eee; 
-                display: block; 
-                margin: 0 auto; 
+            .theCanvas
+            {
+                height: 100%;
+                width: 100%;
             }
             div.dice
             {
@@ -31,7 +30,7 @@
                 display: inline-block;
             }    
         </style>
-        <canvas id="myCanvas" width="1920" height="1080"></canvas>
+        <canvas id="myCanvas" width="1920" height="1080" class="theCanvas"></canvas>
         <center>
             <div id="board" class="board">
                 <div id="dicePosition" style="position:absolute; margin:0; left:-115; top:-400; width:200; height:auto">
