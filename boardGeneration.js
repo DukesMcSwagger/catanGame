@@ -7,11 +7,18 @@
 //Credit to Alex Hauser for creating the tokens
 
 //global variables
-var tiles = []
-var settlementNodes = []
+var tiles = [];
+var settlementNodes = [];
+var roadNodes = [];
 
 //used for the tiles[x].settlementNodes[x] array
 function settlementNode(_number, _owner)
+{
+    this.number = _number;
+    this.owner = _owner;
+}
+
+function roadNode(_number, _owner)
 {
     this.number = _number;
     this.owner = _owner;
@@ -562,6 +569,15 @@ function tileNodeSettlementAssignment()
     tiles[18].settlementNodes = [new settlementNode(44,0), new settlementNode(45,0), new settlementNode(49,0), new settlementNode(50,0), new settlementNode(52,0), new settlementNode(53, 0)];
 }
 
+function createRoadNodeObjects()
+{
+    for (let i = 0; i < 72; i++)
+    {
+        var newRoadNode = new roadNode(i, 0);
+        roadNodes.push(newRoadNode);
+    }
+}
+
 function addStaticEventListeners()
 {
     document.getElementById("endTurn").addEventListener("click", function(){
@@ -577,3 +593,4 @@ tileResourceAssignment();
 settlementNodeTileAssignment();
 tileNodeSettlementAssignment();
 addStaticEventListeners();
+createRoadNodeObjects();

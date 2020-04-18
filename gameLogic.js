@@ -8,11 +8,14 @@
 
 //global variables
 var firstTurnCount = 0
+var settlementPlaced = false;
+var roadPlaced = false;
 
 function catanPlayer()
 {
     this.player = 1;
     this.settlementPicture = "nothing";
+    this.roadPicture = "nothing";
 }
 
 var activePlayer = new catanPlayer();
@@ -25,6 +28,7 @@ function rollDice(){
     let d1= Math.floor(Math.random() * 6) + 1;
     let d2= Math.floor(Math.random() * 6) + 1;
     let diceTotal= d1 + d2; //who rolled the largest number
+    document.getElementById("btn").disabled = true;
     status.innerHTML = "You rolled a " + diceTotal + "."
     die1.innerHTML = d1;
     die2.innerHTML = d2;
@@ -157,26 +161,31 @@ function distributeResources(_roll)
 function playerTurn(_player)
 {
     console.log("it is player " + _player + "'s turn");
+    document.getElementById("btn").disabled = false;
 
     //change the image to match the player that is placing settlements
     if (_player == 1)
     {
         activePlayer.settlementPicture = "redTriangle";
+        activePlayer.roadPicture = "redLine";
         document.getElementById("playerTurn").innerHTML = "Current Turn: Player 1";
     }
     else if (_player == 2)
     {
         activePlayer.settlementPicture = "orangeTriangle";
+        activePlayer.roadPicture = "orangeLine";
         document.getElementById("playerTurn").innerHTML = "Current Turn: Player 2";
     }
     else if (_player == 3)
     {
         activePlayer.settlementPicture = "blueTriangle";
+        activePlayer.roadPicture = "blueLine";
         document.getElementById("playerTurn").innerHTML = "Current Turn: Player 3";
     }
     else if (_player == 4)
     {
         activePlayer.settlementPicture = "whiteTriangle";
+        activePlayer.roadPicture = "whiteLine";
         document.getElementById("playerTurn").innerHTML = "Current Turn: Player 4";
     }
     else
@@ -208,16 +217,15 @@ function addTurnEventListeners()
 
         square.addEventListener("click", function()
         {
-            this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
-            this.owner = activePlayer.player; //set owner in settlement nodes array
-            let id = this.id.split("settlementNode").pop(); //get the settlement node number of the node that was clicked
+            let settlementId = this.id.split("settlementNode").pop(); //get the settlement node number of the node that was clicked
             for (let i = 0; i < 19; i++) //check all tiles
             {
                 for (let j = 0; j < tiles[i].settlementNodes.length; j++) //check the settlement nodes of those tiles
                 {
-                    if (tiles[i].settlementNodes[j].number == id) //if the player clicked this tile
+                    if (tiles[i].settlementNodes[j].number == settlementId && tiles[i].settlementNodes[j].owner == 0) //if the player clicked this settlement node
                     {
-                        tiles[i].settlementNodes[j].owner = activePlayer.player; //set the owner of this tile to this player
+                        tiles[i].settlementNodes[j].owner = activePlayer.player; //set the owner of this settlement node to this player
+                        this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
                     }
                 }
             }
@@ -228,9 +236,17 @@ function addTurnEventListeners()
     for (let i = 0; i < 72; i++)
     {
         let rectangle = document.getElementById("roadNode" + i);
-
-        rectangle.addEventListener("click", function(){
-            this.src = "images/playerPieces/blue line.png";
+        rectangle.addEventListener("click", function()
+        {
+            let roadId = this.id.split("roadNode").pop(); //get the road node number of the node that was clicked
+            for (let j = 0; j < roadNodes.length; j++) //for every road node
+            {
+                if (roadNodes[j].number == roadId && roadNodes[j].owner == 0) //if the player clicked this road node
+                {
+                    roadNodes[j].owner = activePlayer.player; //set the owner of this road node to this player
+                    this.src = "images/playerPieces/" + activePlayer.roadPicture + ".png";
+                }
+            }
         });
     }
 }
@@ -244,6 +260,10 @@ function firstTurn()
     {
         document.getElementById("settlementNode" + i).addEventListener("click", firstTurnLogic)
     }
+    for (let i = 0; i < 72; i++)
+    {
+        document.getElementById("roadNode" + i).addEventListener("click", firstTurnLogic)
+    }
 
     playerTurn(activePlayer.player);
     endTurnBtn.hidden = true;
@@ -252,15 +272,27 @@ function firstTurn()
 
 function firstTurnLogic()
 {
-    activePlayer.player += 1;
-    if (activePlayer.player >= 5)
+    if (this.id.search("settlementNode") >= 0)
     {
-        activePlayer.player = 1;
-        playerTurn(activePlayer.player);
+        settlementPlaced = true;
     }
-    playerTurn(activePlayer.player);
-    firstTurnCount += 1;
-
+    if (this.id.search("roadNode") >= 0)
+    {
+        roadPlaced = true;
+    }
+    if (settlementPlaced == true && roadPlaced == true)
+    {
+        activePlayer.player += 1;
+        if (activePlayer.player >= 5)
+        {
+            activePlayer.player = 1;
+            playerTurn(activePlayer.player);
+        }
+        settlementPlaced = false;
+        roadPlaced = false;
+        playerTurn(activePlayer.player);
+        firstTurnCount += 1;
+    }
     if (firstTurnCount >= 8)
     {
         endFirstTurn();
