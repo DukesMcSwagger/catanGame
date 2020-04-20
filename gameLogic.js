@@ -46,9 +46,9 @@ function distributeResources(_roll)
             resource = tiles[i].resource; //get that tiles resource
             for (let j = 0; j < tiles[i].settlementNodes.length; j++) //check all settlement nodes attached to that tile
             {
-                if (tiles[i].settlementNodes[j].owner != 0) //check to make sure someone owns this settlement node.
+                if (settlementNodes[tiles[i].settlementNodes[j]].owner != 0) //check to make sure someone owns this settlement node.
                 {
-                    setResource(resource, tiles[i].settlementNodes[j].owner);
+                    setResource(resource, settlementNodes[tiles[i].settlementNodes[j]].owner);
                 }
             }
         }
@@ -222,9 +222,9 @@ function addTurnEventListeners()
             {
                 for (let j = 0; j < tiles[i].settlementNodes.length; j++) //check the settlement nodes of those tiles
                 {
-                    if (tiles[i].settlementNodes[j].number == settlementId && tiles[i].settlementNodes[j].owner == 0) //if the player clicked this settlement node
+                    if (settlementNodes[tiles[i].settlementNodes[j]].number == settlementId && settlementNodes[tiles[i].settlementNodes[j]].owner == 0) //if the player clicked this settlement node
                     {
-                        tiles[i].settlementNodes[j].owner = activePlayer.player; //set the owner of this settlement node to this player
+                        settlementNodes[tiles[i].settlementNodes[j]].owner = activePlayer.player; //set the owner of this settlement node to this player
                         this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
                     }
                 }
