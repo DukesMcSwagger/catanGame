@@ -16,13 +16,16 @@ function settlementNode(_number, _owner)
 {
     this.number = _number;
     this.owner = _owner;
-    this.adjacentSettlementNodes = [];
+    this.settlementAdjacentSettlementNodes = [];
+    this.settlementAdjacentRoadNodes = [];
 }
 
 function roadNode(_number, _owner)
 {
     this.number = _number;
     this.owner = _owner;
+    this.roadAdjacentSettlementNodes = [];
+    this.roadAdjacentRoadNodes = [];
 }
 
 function generateBoard()
@@ -585,6 +588,17 @@ function addStaticEventListeners()
     });
 }
 
+function scaleUI()
+{
+    var dice = document.getElementById("dicePosition");
+    var playerTurnText = document.getElementById("playerTurn");
+    var endTurnBtn = document.getElementById("endTurn");
+    console.log(screen.width);
+    dice.style.left = -(screen.width * .343);
+    playerTurnText.style.left = (screen.width * .11875)
+    endTurnBtn.style.left = (playerTurnText.offsetLeft + 215);
+}
+
 generateBoard();
 generateSettlementNodes();
 generateRoadNodes();
@@ -594,3 +608,4 @@ settlementNodeTileAssignment();
 tileNodeSettlementAssignment();
 addStaticEventListeners();
 createRoadNodeObjects();
+scaleUI();
