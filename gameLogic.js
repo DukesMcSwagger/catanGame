@@ -29,6 +29,7 @@ function rollDice(){
     let d2= Math.floor(Math.random() * 6) + 1;
     let diceTotal= d1 + d2; //who rolled the largest number
     document.getElementById("btn").disabled = true;
+    document.getElementById("endTurn").hidden = false;
     status.innerHTML = "You rolled a " + diceTotal + "."
     die1.innerHTML = d1;
     die2.innerHTML = d2;
@@ -55,104 +56,104 @@ function distributeResources(_roll)
 
         updatePlayers();
     }
+}
 
-    //logic for distributing the correct resource to the correct player
-    function setResource(_resource, _owner)
+//logic for distributing the correct resource to the correct player
+function setResource(_resource, _owner)
+{
+    if (_resource == "ore")
     {
-        if (_resource == "ore")
+        if (_owner == 1)
         {
-            if (_owner == 1)
-            {
-                ore1 += 1
-            }
-            if (_owner == 2)
-            {
-                ore2 += 1
-            }
-            if (_owner == 3)
-            {
-                ore3 += 1
-            }
-            if (_owner == 4)
-            {
-                ore4 += 1
-            }
+            ore1 += 1
         }
-        if (_resource == "sheep")
+        if (_owner == 2)
         {
-            if (_owner == 1)
-            {
-                sheep1 += 1
-            }
-            if (_owner == 2)
-            {
-                sheep2 += 1
-            }
-            if (_owner == 3)
-            {
-                sheep3 += 1
-            }
-            if (_owner == 4)
-            {
-                sheep4 += 1
-            }
+            ore2 += 1
         }
-        if (_resource == "wood")
+        if (_owner == 3)
         {
-            if (_owner == 1)
-            {
-                wood1 += 1
-            }
-            if (_owner == 2)
-            {
-                wood2 += 1
-            }
-            if (_owner == 3)
-            {
-                wood3 += 1
-            }
-            if (_owner == 4)
-            {
-                wood4 += 1
-            }
+            ore3 += 1
         }
-        if (_resource == "brick")
+        if (_owner == 4)
         {
-            if (_owner == 1)
-            {
-                brick1 += 1
-            }
-            if (_owner == 2)
-            {
-                brick2 += 1
-            }
-            if (_owner == 3)
-            {
-                brick3 += 1
-            }
-            if (_owner == 4)
-            {
-                brick4 += 1
-            }
+            ore4 += 1
         }
-        if (_resource == "wheat")
+    }
+    if (_resource == "sheep")
+    {
+        if (_owner == 1)
         {
-            if (_owner == 1)
-            {
-                wheat1 += 1
-            }
-            if (_owner == 2)
-            {
-                wheat2 += 1
-            }
-            if (_owner == 3)
-            {
-                wheat3 += 1
-            }
-            if (_owner == 4)
-            {
-                wheat4 += 1
-            }
+            sheep1 += 1
+        }
+        if (_owner == 2)
+        {
+            sheep2 += 1
+        }
+        if (_owner == 3)
+        {
+            sheep3 += 1
+        }
+        if (_owner == 4)
+        {
+            sheep4 += 1
+        }
+    }
+    if (_resource == "wood")
+    {
+        if (_owner == 1)
+        {
+            wood1 += 1
+        }
+        if (_owner == 2)
+        {
+            wood2 += 1
+        }
+        if (_owner == 3)
+        {
+            wood3 += 1
+        }
+        if (_owner == 4)
+        {
+            wood4 += 1
+        }
+    }
+    if (_resource == "brick")
+    {
+        if (_owner == 1)
+        {
+            brick1 += 1
+        }
+        if (_owner == 2)
+        {
+            brick2 += 1
+        }
+        if (_owner == 3)
+        {
+            brick3 += 1
+        }
+        if (_owner == 4)
+        {
+            brick4 += 1
+        }
+    }
+    if (_resource == "wheat")
+    {
+        if (_owner == 1)
+        {
+            wheat1 += 1
+        }
+        if (_owner == 2)
+        {
+            wheat2 += 1
+        }
+        if (_owner == 3)
+        {
+            wheat3 += 1
+        }
+        if (_owner == 4)
+        {
+            wheat4 += 1
         }
     }
 }
@@ -162,6 +163,7 @@ function playerTurn(_player)
 {
     console.log("it is player " + _player + "'s turn");
     document.getElementById("btn").disabled = false;
+    document.getElementById("endTurn").hidden = true;
 
     //change the image to match the player that is placing settlements
     if (_player == 1)
@@ -224,8 +226,36 @@ function addTurnEventListeners()
                 {
                     if (settlementNodes[tiles[i].settlementNodes[j]].number == settlementId && settlementNodes[tiles[i].settlementNodes[j]].owner == 0) //if the player clicked this settlement node
                     {
-                        settlementNodes[tiles[i].settlementNodes[j]].owner = activePlayer.player; //set the owner of this settlement node to this player
-                        this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
+                        
+                        for (let z = 0; z < settlementNodes[settlementId].adjacentRoadNodes.length; z++)
+                        {
+                            for (let k = 0; k < settlementNodes[settlementId].adjacentSettlementNodes.length; k++)
+                            {
+                                if (settlementNodes[settlementNodes[settlementId].adjacentSettlementNodes[k]].owner != 0)
+                                {
+                                    console.log("can't place settlements adjacent to other settlements.");
+                                    return;
+                                }
+                                //FOR DEBUGGING
+                                //console.log(settlementNodes[settlementId].adjacentRoadNodes[z] + " owner: " + roadNodes[settlementNodes[settlementId].adjacentRoadNodes[z]].owner);
+                                //console.log("active player: " + activePlayer.player);
+                                if (roadNodes[settlementNodes[settlementId].adjacentRoadNodes[z]].owner == activePlayer.player)
+                                {
+                                    if (k == (settlementNodes[settlementId].adjacentSettlementNodes.length - 1))
+                                    {
+                                        settlementNodes[tiles[i].settlementNodes[j]].owner = activePlayer.player; //set the owner of this settlement node to this player
+                                        this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
+                                        console.log("settlement placed.");
+                                        return;
+                                    }
+                                }
+                                else if (z == (settlementNodes[settlementId].adjacentRoadNodes.length - 1))
+                                {
+                                    console.log("You must own a road adjacent to this node to place a settlement.");
+                                    return;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -241,10 +271,29 @@ function addTurnEventListeners()
             let roadId = this.id.split("roadNode").pop(); //get the road node number of the node that was clicked
             for (let j = 0; j < roadNodes.length; j++) //for every road node
             {
-                if (roadNodes[j].number == roadId && roadNodes[j].owner == 0) //if the player clicked this road node
+                for (let i = 0; i < roadNodes[j].adjacentSettlementNodes.length; i++)
                 {
-                    roadNodes[j].owner = activePlayer.player; //set the owner of this road node to this player
-                    this.src = "images/playerPieces/" + activePlayer.roadPicture + ".png";
+                    if (settlementNodes[roadNodes[j].adjacentSettlementNodes[i]].owner == activePlayer.player)
+                    {
+                        if (roadNodes[j].number == roadId && roadNodes[j].owner == 0 && roadPlaced == false) //if the player clicked this road node
+                        {
+                            roadNodes[j].owner = activePlayer.player; //set the owner of this road node to this player
+                            this.src = "images/playerPieces/" + activePlayer.roadPicture + ".png";
+                            return;
+                        }
+                    }
+                }
+                for (let z = 0; z < roadNodes[j].adjacentRoadNodes.length; z++)
+                {
+                    if (roadNodes[roadNodes[j].adjacentRoadNodes[z]].owner == activePlayer.player)
+                    {
+                        if (roadNodes[j].number == roadId && roadNodes[j].owner == 0 && roadPlaced == false) //if the player clicked this road node
+                        {
+                            roadNodes[j].owner = activePlayer.player; //set the owner of this road node to this player
+                            this.src = "images/playerPieces/" + activePlayer.roadPicture + ".png";
+                            return;
+                        }
+                    }
                 }
             }
         });
@@ -258,10 +307,12 @@ function firstTurn()
     
     for (let i = 0; i < 54; i++)
     {
+        document.getElementById("settlementNode" + i).addEventListener("click", firstTurnSettlementListener)
         document.getElementById("settlementNode" + i).addEventListener("click", firstTurnLogic)
     }
     for (let i = 0; i < 72; i++)
     {
+        document.getElementById("roadNode" + i).addEventListener("click", firstTurnRoadListener)
         document.getElementById("roadNode" + i).addEventListener("click", firstTurnLogic)
     }
 
@@ -272,14 +323,6 @@ function firstTurn()
 
 function firstTurnLogic()
 {
-    if (this.id.search("settlementNode") >= 0)
-    {
-        settlementPlaced = true;
-    }
-    if (this.id.search("roadNode") >= 0)
-    {
-        roadPlaced = true;
-    }
     if (settlementPlaced == true && roadPlaced == true)
     {
         activePlayer.player += 1;
@@ -307,13 +350,97 @@ function endFirstTurn()
     for (let i = 0; i < 54; i++)
     {
         document.getElementById("settlementNode" + i).removeEventListener("click", firstTurnLogic);
+        document.getElementById("settlementNode" + i).removeEventListener("click", firstTurnSettlementListener);
+    }
+    for (let i = 0; i < 72; i++)
+    {
+        document.getElementById("roadNode" + i).removeEventListener("click", firstTurnLogic);
+        document.getElementById("roadNode" + i).removeEventListener("click", firstTurnRoadListener);
     }
 
     endTurnBtn.hidden = false;
     dice.hidden = false;
+
+    addTurnEventListeners();
+    distributeFirstTurnResources();
+    playerTurn(1);
 }
 
-addTurnEventListeners();
+function firstTurnSettlementListener()
+{
+    //settlementNode click
+    let settlementId = this.id.split("settlementNode").pop(); //get the settlement node number of the node that was clicked
+    for (let i = 0; i < 19; i++) //check all tiles
+    {
+        for (let j = 0; j < tiles[i].settlementNodes.length; j++) //check the settlement nodes of those tiles
+        {
+            if (settlementNodes[tiles[i].settlementNodes[j]].number == settlementId && settlementNodes[tiles[i].settlementNodes[j]].owner == 0) //if the player clicked this settlement node
+            {
+                for (let k = 0; k < settlementNodes[settlementId].adjacentSettlementNodes.length; k++)
+                {
+                    if (settlementNodes[settlementNodes[settlementId].adjacentSettlementNodes[k]].owner != 0)
+                    {
+                        console.log("can't place settlements adjacent to other settlements.");
+                        return;
+                    }
+                    //FOR DEBUGGING
+                    //console.log(settlementNodes[settlementId].adjacentRoadNodes[z] + " owner: " + roadNodes[settlementNodes[settlementId].adjacentRoadNodes[z]].owner);
+                    //console.log("active player: " + activePlayer.player);
+                    if (k == (settlementNodes[settlementId].adjacentSettlementNodes.length - 1) && settlementPlaced == false)
+                    {
+                        settlementNodes[tiles[i].settlementNodes[j]].owner = activePlayer.player; //set the owner of this settlement node to this player
+                        this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
+                        settlementPlaced = true;
+                        console.log("settlement placed.");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function firstTurnRoadListener()
+{
+    let roadId = this.id.split("roadNode").pop(); //get the road node number of the node that was clicked
+    for (let j = 0; j < roadNodes.length; j++) //for every road node
+    {
+        for (let i = 0; i < roadNodes[j].adjacentSettlementNodes.length; i++)
+        {
+            if (settlementNodes[roadNodes[j].adjacentSettlementNodes[i]].owner == activePlayer.player)
+            {
+                if (roadNodes[j].number == roadId && roadNodes[j].owner == 0 && roadPlaced == false) //if the player clicked this road node
+                {
+                    roadNodes[j].owner = activePlayer.player; //set the owner of this road node to this player
+                    this.src = "images/playerPieces/" + activePlayer.roadPicture + ".png";
+                    roadPlaced = true;
+                    return;
+                }
+            }
+        }
+    }
+}
+
+function distributeFirstTurnResources()
+{
+    let resource = "nothing";
+
+    for (let i = 0; i < 19; i++)
+    {
+        console.log("Tile " + i + " resource: " + tiles[i].resource);
+        resource = tiles[i].resource; //get that tiles resource
+        for (let j = 0; j < tiles[i].settlementNodes.length; j++) //check all settlement nodes attached to that tile
+        {
+            if (settlementNodes[tiles[i].settlementNodes[j]].owner != 0) //check to make sure someone owns this settlement node.
+            {
+                console.log("Gave resource: " + resource + " to owner: " + settlementNodes[tiles[i].settlementNodes[j]].owner);
+                setResource(resource, settlementNodes[tiles[i].settlementNodes[j]].owner);
+            }
+        }
+    }
+    
+    updatePlayers();
+}
 
 firstTurn();
 

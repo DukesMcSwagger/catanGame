@@ -16,16 +16,16 @@ function settlementNode(_number, _owner)
 {
     this.number = _number;
     this.owner = _owner;
-    this.settlementAdjacentSettlementNodes = [];
-    this.settlementAdjacentRoadNodes = [];
+    this.adjacentSettlementNodes = [];
+    this.adjacentRoadNodes = [];
 }
 
 function roadNode(_number, _owner)
 {
     this.number = _number;
     this.owner = _owner;
-    this.roadAdjacentSettlementNodes = [];
-    this.roadAdjacentRoadNodes = [];
+    this.adjacentSettlementNodes = [];
+    this.adjacentRoadNodes = [];
 }
 
 function generateBoard()
@@ -486,7 +486,7 @@ function tileResourceAssignment()
         }
     }
 }
-function settlementNodeTileAssignment()
+function settlementNodeSetup()
 {
     for (let i = 0; i < 54; i++)
     {
@@ -547,6 +547,116 @@ function settlementNodeTileAssignment()
     settlementNodes[51].tiles = [17]
     settlementNodes[52].tiles = [18]
     settlementNodes[53].tiles = [18]
+
+    settlementNodes[0 ].adjacentRoadNodes = [9, 55]
+    settlementNodes[1 ].adjacentRoadNodes = [9, 36]
+    settlementNodes[2 ].adjacentRoadNodes = [4, 51]
+    settlementNodes[3 ].adjacentRoadNodes = [4, 31, 55]
+    settlementNodes[4 ].adjacentRoadNodes = [15, 36, 60]
+    settlementNodes[5 ].adjacentRoadNodes = [15, 41]
+    settlementNodes[6 ].adjacentRoadNodes = [0, 48]
+    settlementNodes[7 ].adjacentRoadNodes = [0, 27, 51]
+    settlementNodes[8 ].adjacentRoadNodes = [10, 31, 56]
+    settlementNodes[9 ].adjacentRoadNodes = [10, 37, 60]   
+    settlementNodes[10].adjacentRoadNodes = [20, 41, 65]
+    settlementNodes[11].adjacentRoadNodes = [20, 45]
+    settlementNodes[12].adjacentRoadNodes = [24, 48]
+    settlementNodes[13].adjacentRoadNodes = [5, 27, 52]
+    settlementNodes[14].adjacentRoadNodes = [5, 32, 56]
+    settlementNodes[15].adjacentRoadNodes = [16, 37, 61]
+    settlementNodes[16].adjacentRoadNodes = [16, 42, 65]
+    settlementNodes[17].adjacentRoadNodes = [45, 69]
+    settlementNodes[18].adjacentRoadNodes = [1, 24, 49]
+    settlementNodes[19].adjacentRoadNodes = [1, 28, 52]
+    settlementNodes[20].adjacentRoadNodes = [11, 32, 57]
+    settlementNodes[21].adjacentRoadNodes = [11, 38, 61]
+    settlementNodes[22].adjacentRoadNodes = [21, 42, 66]
+    settlementNodes[23].adjacentRoadNodes = [21, 46, 69]
+    settlementNodes[24].adjacentRoadNodes = [25, 49]
+    settlementNodes[25].adjacentRoadNodes = [6, 28, 53]
+    settlementNodes[26].adjacentRoadNodes = [6, 33, 57]
+    settlementNodes[27].adjacentRoadNodes = [17, 38, 62]
+    settlementNodes[28].adjacentRoadNodes = [17, 43, 66]
+    settlementNodes[29].adjacentRoadNodes = [46, 70]
+    settlementNodes[30].adjacentRoadNodes = [2, 25, 50]
+    settlementNodes[31].adjacentRoadNodes = [2, 29, 53]
+    settlementNodes[32].adjacentRoadNodes = [12, 33, 58]
+    settlementNodes[33].adjacentRoadNodes = [12, 39, 62]
+    settlementNodes[34].adjacentRoadNodes = [22, 43, 67]
+    settlementNodes[35].adjacentRoadNodes = [22, 47, 70]
+    settlementNodes[36].adjacentRoadNodes = [26, 50]
+    settlementNodes[37].adjacentRoadNodes = [7, 29, 54]
+    settlementNodes[38].adjacentRoadNodes = [7, 34, 58]
+    settlementNodes[39].adjacentRoadNodes = [18, 39, 63]
+    settlementNodes[40].adjacentRoadNodes = [18, 44, 67]
+    settlementNodes[41].adjacentRoadNodes = [47, 71]
+    settlementNodes[42].adjacentRoadNodes = [3, 26]
+    settlementNodes[43].adjacentRoadNodes = [3, 30, 54]
+    settlementNodes[44].adjacentRoadNodes = [13, 34, 59]
+    settlementNodes[45].adjacentRoadNodes = [13, 40, 63]
+    settlementNodes[46].adjacentRoadNodes = [23, 44, 68]
+    settlementNodes[47].adjacentRoadNodes = [23, 71]
+    settlementNodes[48].adjacentRoadNodes = [8, 30]
+    settlementNodes[49].adjacentRoadNodes = [8, 35, 59]
+    settlementNodes[50].adjacentRoadNodes = [19, 40, 64]
+    settlementNodes[51].adjacentRoadNodes = [19, 68]
+    settlementNodes[52].adjacentRoadNodes = [14, 35]
+    settlementNodes[53].adjacentRoadNodes = [14, 64]
+
+    settlementNodes[0 ].adjacentSettlementNodes = [1, 3]
+    settlementNodes[1 ].adjacentSettlementNodes = [0, 4]
+    settlementNodes[2 ].adjacentSettlementNodes = [3, 7]
+    settlementNodes[3 ].adjacentSettlementNodes = [0, 2, 8]
+    settlementNodes[4 ].adjacentSettlementNodes = [1, 5, 9]
+    settlementNodes[5 ].adjacentSettlementNodes = [4, 10]
+    settlementNodes[6 ].adjacentSettlementNodes = [7, 12]
+    settlementNodes[7 ].adjacentSettlementNodes = [2, 6, 13]
+    settlementNodes[8 ].adjacentSettlementNodes = [3, 9, 14]
+    settlementNodes[9 ].adjacentSettlementNodes = [4, 8, 15] 
+    settlementNodes[10].adjacentSettlementNodes = [5, 11, 16]
+    settlementNodes[11].adjacentSettlementNodes = [10, 17]
+    settlementNodes[12].adjacentSettlementNodes = [6, 18]
+    settlementNodes[13].adjacentSettlementNodes = [7, 14, 19]
+    settlementNodes[14].adjacentSettlementNodes = [8, 13, 20]
+    settlementNodes[15].adjacentSettlementNodes = [9, 16, 21]
+    settlementNodes[16].adjacentSettlementNodes = [10, 15, 22]
+    settlementNodes[17].adjacentSettlementNodes = [11, 23]
+    settlementNodes[18].adjacentSettlementNodes = [12, 24]
+    settlementNodes[19].adjacentSettlementNodes = [13, 18, 25]
+    settlementNodes[20].adjacentSettlementNodes = [14, 21, 26]
+    settlementNodes[21].adjacentSettlementNodes = [15, 20, 27]
+    settlementNodes[22].adjacentSettlementNodes = [16, 23, 28]
+    settlementNodes[23].adjacentSettlementNodes = [17, 22, 29]
+    settlementNodes[24].adjacentSettlementNodes = [18, 30]
+    settlementNodes[25].adjacentSettlementNodes = [19, 26, 31]
+    settlementNodes[26].adjacentSettlementNodes = [20, 25, 32]
+    settlementNodes[27].adjacentSettlementNodes = [21, 28, 33]
+    settlementNodes[28].adjacentSettlementNodes = [22, 27, 34]
+    settlementNodes[29].adjacentSettlementNodes = [23, 35]
+    settlementNodes[30].adjacentSettlementNodes = [24, 36]
+    settlementNodes[31].adjacentSettlementNodes = [25, 30, 37]
+    settlementNodes[32].adjacentSettlementNodes = [26, 33, 38]
+    settlementNodes[33].adjacentSettlementNodes = [27, 32, 39]
+    settlementNodes[34].adjacentSettlementNodes = [28, 35, 40]
+    settlementNodes[35].adjacentSettlementNodes = [29, 34, 41]
+    settlementNodes[36].adjacentSettlementNodes = [30, 42]
+    settlementNodes[37].adjacentSettlementNodes = [31, 38, 43]
+    settlementNodes[38].adjacentSettlementNodes = [32, 37, 44]
+    settlementNodes[39].adjacentSettlementNodes = [33, 40, 45]
+    settlementNodes[40].adjacentSettlementNodes = [34, 39, 46]
+    settlementNodes[41].adjacentSettlementNodes = [35, 47]
+    settlementNodes[42].adjacentSettlementNodes = [36, 43]
+    settlementNodes[43].adjacentSettlementNodes = [42, 37, 48]
+    settlementNodes[44].adjacentSettlementNodes = [38, 49, 45]
+    settlementNodes[45].adjacentSettlementNodes = [39, 44, 50]
+    settlementNodes[46].adjacentSettlementNodes = [40, 47, 51]
+    settlementNodes[47].adjacentSettlementNodes = [41, 46]
+    settlementNodes[48].adjacentSettlementNodes = [43, 49]
+    settlementNodes[49].adjacentSettlementNodes = [44, 48, 52]
+    settlementNodes[50].adjacentSettlementNodes = [45, 51, 53]
+    settlementNodes[51].adjacentSettlementNodes = [46, 50]
+    settlementNodes[52].adjacentSettlementNodes = [49, 53]
+    settlementNodes[53].adjacentSettlementNodes = [50, 52]
 }
 
 function tileNodeSettlementAssignment()
@@ -576,9 +686,157 @@ function createRoadNodeObjects()
 {
     for (let i = 0; i < 72; i++)
     {
-        var newRoadNode = new roadNode(i, 0);
-        roadNodes.push(newRoadNode);
+        roadNodes[i] = new roadNode(i, 0);
     }
+}
+
+function roadNodeSetup()
+{
+    roadNodes[0 ].adjacentSettlementNodes = [6, 7]
+    roadNodes[1 ].adjacentSettlementNodes = [18, 19]
+    roadNodes[2 ].adjacentSettlementNodes = [30, 31]
+    roadNodes[3 ].adjacentSettlementNodes = [42, 43]
+    roadNodes[4 ].adjacentSettlementNodes = [2, 3]
+    roadNodes[5 ].adjacentSettlementNodes = [13, 14]
+    roadNodes[6 ].adjacentSettlementNodes = [25, 26]
+    roadNodes[7 ].adjacentSettlementNodes = [37, 38]
+    roadNodes[8 ].adjacentSettlementNodes = [48, 49]
+    roadNodes[9 ].adjacentSettlementNodes = [0, 1]
+    roadNodes[10].adjacentSettlementNodes = [8, 9]
+    roadNodes[11].adjacentSettlementNodes = [20, 21]
+    roadNodes[12].adjacentSettlementNodes = [32, 33]
+    roadNodes[13].adjacentSettlementNodes = [44, 45]
+    roadNodes[14].adjacentSettlementNodes = [52, 53]
+    roadNodes[15].adjacentSettlementNodes = [4, 5]
+    roadNodes[16].adjacentSettlementNodes = [15, 16]
+    roadNodes[17].adjacentSettlementNodes = [27, 28]
+    roadNodes[18].adjacentSettlementNodes = [39, 40]
+    roadNodes[19].adjacentSettlementNodes = [50, 51]
+    roadNodes[20].adjacentSettlementNodes = [10, 11]
+    roadNodes[21].adjacentSettlementNodes = [22, 23]
+    roadNodes[22].adjacentSettlementNodes = [34, 35]
+    roadNodes[23].adjacentSettlementNodes = [46, 47]
+    roadNodes[24].adjacentSettlementNodes = [12, 18]
+    roadNodes[25].adjacentSettlementNodes = [24, 30]
+    roadNodes[26].adjacentSettlementNodes = [36, 42]
+    roadNodes[27].adjacentSettlementNodes = [7, 13]
+    roadNodes[28].adjacentSettlementNodes = [19, 25]
+    roadNodes[29].adjacentSettlementNodes = [31, 37]
+    roadNodes[30].adjacentSettlementNodes = [43, 48]
+    roadNodes[31].adjacentSettlementNodes = [3, 8]
+    roadNodes[32].adjacentSettlementNodes = [14, 20]
+    roadNodes[33].adjacentSettlementNodes = [26, 32]
+    roadNodes[34].adjacentSettlementNodes = [38, 44]
+    roadNodes[35].adjacentSettlementNodes = [49, 52]
+    roadNodes[36].adjacentSettlementNodes = [1, 4]
+    roadNodes[37].adjacentSettlementNodes = [9, 15]
+    roadNodes[38].adjacentSettlementNodes = [21, 27]
+    roadNodes[39].adjacentSettlementNodes = [33, 39]
+    roadNodes[40].adjacentSettlementNodes = [45, 50]
+    roadNodes[41].adjacentSettlementNodes = [5, 10]
+    roadNodes[42].adjacentSettlementNodes = [16, 22]
+    roadNodes[43].adjacentSettlementNodes = [28, 34]
+    roadNodes[44].adjacentSettlementNodes = [40, 46]
+    roadNodes[45].adjacentSettlementNodes = [11, 17]
+    roadNodes[46].adjacentSettlementNodes = [23, 29]
+    roadNodes[47].adjacentSettlementNodes = [35, 41]
+    roadNodes[48].adjacentSettlementNodes = [6, 12]
+    roadNodes[49].adjacentSettlementNodes = [18, 24]
+    roadNodes[50].adjacentSettlementNodes = [30, 36]
+    roadNodes[51].adjacentSettlementNodes = [2, 7]
+    roadNodes[52].adjacentSettlementNodes = [13, 19]
+    roadNodes[53].adjacentSettlementNodes = [25, 31]
+    roadNodes[54].adjacentSettlementNodes = [37, 43]
+    roadNodes[55].adjacentSettlementNodes = [0, 3]
+    roadNodes[56].adjacentSettlementNodes = [8, 14]
+    roadNodes[57].adjacentSettlementNodes = [20, 26]
+    roadNodes[58].adjacentSettlementNodes = [32, 38]
+    roadNodes[59].adjacentSettlementNodes = [44, 49]
+    roadNodes[60].adjacentSettlementNodes = [4, 9]
+    roadNodes[61].adjacentSettlementNodes = [15, 21]
+    roadNodes[62].adjacentSettlementNodes = [27, 33]
+    roadNodes[63].adjacentSettlementNodes = [39, 45]
+    roadNodes[64].adjacentSettlementNodes = [50, 53]
+    roadNodes[65].adjacentSettlementNodes = [10, 16]
+    roadNodes[66].adjacentSettlementNodes = [22, 28]
+    roadNodes[67].adjacentSettlementNodes = [34, 40]
+    roadNodes[68].adjacentSettlementNodes = [46, 51]
+    roadNodes[69].adjacentSettlementNodes = [17, 23]
+    roadNodes[70].adjacentSettlementNodes = [29, 35]
+    roadNodes[71].adjacentSettlementNodes = [41, 47] 
+
+    roadNodes[0 ].adjacentRoadNodes = [27, 48, 51]
+    roadNodes[1 ].adjacentRoadNodes = [24, 28, 49, 52]
+    roadNodes[2 ].adjacentRoadNodes = [25, 29, 50, 53]
+    roadNodes[3 ].adjacentRoadNodes = [26, 30, 54]
+    roadNodes[4 ].adjacentRoadNodes = [31, 51, 55]
+    roadNodes[5 ].adjacentRoadNodes = [27, 32, 52, 56]
+    roadNodes[6 ].adjacentRoadNodes = [28, 33, 53, 57]
+    roadNodes[7 ].adjacentRoadNodes = [29, 34, 54, 58]
+    roadNodes[8 ].adjacentRoadNodes = [30, 35, 59]
+    roadNodes[9 ].adjacentRoadNodes = [55, 36]
+    roadNodes[10].adjacentRoadNodes = [31, 37, 56, 60]
+    roadNodes[11].adjacentRoadNodes = [32, 38, 57, 61]
+    roadNodes[12].adjacentRoadNodes = [33, 39, 58, 62]
+    roadNodes[13].adjacentRoadNodes = [34, 40, 59, 63]
+    roadNodes[14].adjacentRoadNodes = [35, 64]
+    roadNodes[15].adjacentRoadNodes = [36, 41, 60]
+    roadNodes[16].adjacentRoadNodes = [37, 42, 61, 65]
+    roadNodes[17].adjacentRoadNodes = [38, 43, 62, 66]
+    roadNodes[18].adjacentRoadNodes = [39, 44, 63, 67]
+    roadNodes[19].adjacentRoadNodes = [40, 64, 68]
+    roadNodes[20].adjacentRoadNodes = [41, 45, 65]
+    roadNodes[21].adjacentRoadNodes = [42, 46, 66, 69]
+    roadNodes[22].adjacentRoadNodes = [43, 47, 67, 70]
+    roadNodes[23].adjacentRoadNodes = [44, 68, 71]
+    roadNodes[24].adjacentRoadNodes = [48, 1, 49]
+    roadNodes[25].adjacentRoadNodes = [49, 2, 50]
+    roadNodes[26].adjacentRoadNodes = [50, 3]
+    roadNodes[27].adjacentRoadNodes = [5, 51, 52]
+    roadNodes[28].adjacentRoadNodes = [1, 6, 52, 53]
+    roadNodes[29].adjacentRoadNodes = [2, 7, 53, 54]
+    roadNodes[30].adjacentRoadNodes = [3, 8, 54]
+    roadNodes[31].adjacentRoadNodes = [4, 10, 55, 56]
+    roadNodes[32].adjacentRoadNodes = [5, 11, 56, 57]
+    roadNodes[33].adjacentRoadNodes = [6, 12, 57, 58]
+    roadNodes[34].adjacentRoadNodes = [7, 13, 58, 59]
+    roadNodes[35].adjacentRoadNodes = [8, 14, 59]
+    roadNodes[36].adjacentRoadNodes = [9, 15, 60]
+    roadNodes[37].adjacentRoadNodes = [10, 16, 60, 61]
+    roadNodes[38].adjacentRoadNodes = [11, 17, 61, 62]
+    roadNodes[39].adjacentRoadNodes = [12, 18, 62, 63]
+    roadNodes[40].adjacentRoadNodes = [13, 19, 63, 64]
+    roadNodes[41].adjacentRoadNodes = [15, 20, 65]
+    roadNodes[42].adjacentRoadNodes = [16, 21, 65, 66]
+    roadNodes[43].adjacentRoadNodes = [17, 22, 66, 67]
+    roadNodes[44].adjacentRoadNodes = [18, 23, 67, 68]
+    roadNodes[45].adjacentRoadNodes = [20, 69]
+    roadNodes[46].adjacentRoadNodes = [21, 70, 69]
+    roadNodes[47].adjacentRoadNodes = [22, 71, 70]
+    roadNodes[48].adjacentRoadNodes = [0, 24]
+    roadNodes[49].adjacentRoadNodes = [1, 25, 24]
+    roadNodes[50].adjacentRoadNodes = [2, 26, 25]
+    roadNodes[51].adjacentRoadNodes = [4, 27, 0]
+    roadNodes[52].adjacentRoadNodes = [1, 5, 27, 28]
+    roadNodes[53].adjacentRoadNodes = [2, 6, 28, 29]
+    roadNodes[54].adjacentRoadNodes = [3, 7, 30, 29]
+    roadNodes[55].adjacentRoadNodes = [4, 9, 31]
+    roadNodes[56].adjacentRoadNodes = [5, 10, 31, 32]
+    roadNodes[57].adjacentRoadNodes = [6, 11, 32, 33]
+    roadNodes[58].adjacentRoadNodes = [7, 12, 33, 34]
+    roadNodes[59].adjacentRoadNodes = [8, 13, 34, 35]
+    roadNodes[60].adjacentRoadNodes = [10, 15, 36, 37]
+    roadNodes[61].adjacentRoadNodes = [11, 16, 37, 38]
+    roadNodes[62].adjacentRoadNodes = [12, 17, 38, 39]
+    roadNodes[63].adjacentRoadNodes = [13, 18, 39, 40]
+    roadNodes[64].adjacentRoadNodes = [14, 19, 40]
+    roadNodes[65].adjacentRoadNodes = [16, 20, 41, 42]
+    roadNodes[66].adjacentRoadNodes = [17, 21, 42, 43]
+    roadNodes[67].adjacentRoadNodes = [18, 22, 43, 44]
+    roadNodes[68].adjacentRoadNodes = [19, 23, 44]
+    roadNodes[69].adjacentRoadNodes = [21, 45, 46]
+    roadNodes[70].adjacentRoadNodes = [22, 46, 47]
+    roadNodes[71].adjacentRoadNodes = [23, 47]
 }
 
 function addStaticEventListeners()
@@ -604,8 +862,9 @@ generateSettlementNodes();
 generateRoadNodes();
 tileTokenAssignment();
 tileResourceAssignment();
-settlementNodeTileAssignment();
+settlementNodeSetup();
 tileNodeSettlementAssignment();
 addStaticEventListeners();
 createRoadNodeObjects();
 scaleUI();
+roadNodeSetup();
