@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>
+        </title>
+    </head>
+    <body>
+        <style>
+            .board
+            {
+                position: absolute;
+            }
+            .settlementNodes
+            {
+                position: absolute;
+            }
+            .theCanvas
+            {
+                height: 100%;
+                width: 100%;
+            }
+            div.dice
+            {
+                width:32px;
+                background:#F5F5F5;
+                border:#999 1px solid;
+                padding: 10px;
+                font-size: 24px;
+                text-align: center;
+                margin: 5px;
+                display: inline-block;
+            }    
+        </style>
+        <canvas id="myCanvas" width="1920" height="1080" class="theCanvas"></canvas>
+        <center>
+            <div id="board" class="board">
+                <div id="dicePosition" style="position:absolute; margin:0; top:-75; width:200; height:auto">
+                    <div id="die1" class="dice">0</div>
+                    <div id= "die2" class="dice">0</div>
+                    <button onclick="rollDice()" id="btn">Roll Dice</button>
+                    <h2 id= "status" style="clear:left;"></h2>
+                </div>
+                <button id="endTurn" style="position:absolute; top:0; left:400;">EndTurn</button>
+                <div id="playerTurn" style="position:absolute; top:-20; left:190; width: 500"></div>
+            </div>
+        </center>
+    </body>
+    <script src="boardGeneration.js"></script>
+    <script src="players.js"></script>
+    <script src="gameLogic.js"></script>
+</html>
