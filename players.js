@@ -7,6 +7,9 @@ var ore1 = 0, ore2 = 0, ore3 = 0, ore4 = 0;
 var brick1 = 0, brick2 = 0, brick3 = 0, brick4 = 0;
 var wheat1 = 0, wheat2 = 0, wheat3 = 0, wheat4 = 0;
 var totalHand1 = 0, totalHand2 = 0, totalHand3 = 0, totalHand4 = 0;
+var points1 = 0, points2 = 0, points3 = 0, points4 = 0;
+
+var pointsToWin = 5;
 
 //Player 1's information
 function player1(){
@@ -52,7 +55,7 @@ function player1(){
 
     ctx.font = "16px Arial";
     ctx.fillStyle = "Black";
-    ctx.fillText("Hand Total: "+totalHand1, 63, 200);
+    ctx.fillText("Points : "+ points1, 63, 200);
 }
 
 //Player 2's information
@@ -99,7 +102,7 @@ function player2(){
 
     ctx.font = "16px Arial";
     ctx.fillStyle = "Black";
-    ctx.fillText("Hand Total: "+totalHand2, 1723, 200); 
+    ctx.fillText("Points : "+ points2, 1723, 200); 
 }
 
 //player 3's
@@ -146,7 +149,7 @@ function player3(){
 
     ctx.font = "16px Arial";
     ctx.fillStyle = "Black";
-    ctx.fillText("Hand Total: "+totalHand3, 63, 870);
+    ctx.fillText("Points : "+ points3, 63, 870);
 }
 
 //Player 4's infromation
@@ -194,7 +197,7 @@ function player4(){
 
     ctx.font = "16px Arial";
     ctx.fillStyle = "Black";
-    ctx.fillText("Hand Total: "+totalHand4, 1723, 870); 
+    ctx.fillText("Points : "+ points4, 1723, 870); 
 }
 
 //drawPlayer UI
@@ -205,6 +208,23 @@ function updatePlayers()
     player2();
     player3();
     player4();
+
+    if (points1 >= pointsToWin)
+    {
+        window.alert("Player 1 Wins!");
+    }
+    else if (points1 >= pointsToWin)
+    {
+        window.alert("Player 2 Wins!");
+    }
+    else if (points1 >= pointsToWin)
+    {
+        window.alert("Player 3 Wins!");
+    }
+    else if (points1 >= pointsToWin)
+    {
+        window.alert("Player 4 Wins!");
+    }
 }
 
 updatePlayers()

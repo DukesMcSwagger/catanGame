@@ -308,6 +308,7 @@ function addTurnEventListeners()
                                                 console.log("Not enough resources to place settlement.");
                                             }
                                         }
+                                        distributePoint();
                                         updatePlayers();
                                         
                                         //this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
@@ -389,7 +390,7 @@ function addTurnEventListeners()
                             
                             if (activePlayer.player == 4)
                             {
-                                if(brick4 >= 1 && wood4 >= 4)
+                                if(brick4 >= 1 && wood4 >= 1)
                                 {
                                     brick4 -= 1;
                                     wood4 -= 1;
@@ -458,7 +459,7 @@ function addTurnEventListeners()
                             
                             if (activePlayer.player == 4)
                             {
-                                if(brick4 >= 1 && wood1 >= 4)
+                                if(brick4 >= 1 && wood1 >= 1)
                                 {
                                     brick4 -= 1;
                                     wood4 -= 1;
@@ -573,6 +574,7 @@ function firstTurnSettlementListener()
                         this.src = "images/playerPieces/" + activePlayer.settlementPicture + ".png";
                         settlementPlaced = true;
                         console.log("settlement placed.");
+                        distributePoint();
                         return;
                     }
                 }
@@ -621,6 +623,30 @@ function distributeFirstTurnResources()
     }
     
     updatePlayers();
+}
+
+function distributePoint()
+{
+    if (activePlayer.player == 1)
+    {
+        points1 += 1
+    }
+    else if (activePlayer.player == 2)
+    {
+        points2 += 1
+    }
+    else if (activePlayer.player == 3)
+    {
+        points3 += 1
+    }
+    else if (activePlayer.player == 4)
+    {
+        points4 += 1
+    }
+    else
+    {
+        console.log("There was a problem distributing points.");
+    }
 }
 
 firstTurn();
